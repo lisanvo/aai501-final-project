@@ -104,7 +104,8 @@ class PPTXtoVideo:
         """
         Converts the .pptx file to a .pdf file using LibreOffice.
         """
-        cmd = f"libreoffice --headless --convert-to pdf {self.pptx_filename}"
+        cmd = f'"C:\\Program Files\\LibreOffice\\program\\soffice.exe" --headless --convert-to pdf {self.pptx_filename}'
+
         subprocess.run(cmd, shell=True, check=True)
 
     def create_videos(self) -> List[AudioFileClip]:
