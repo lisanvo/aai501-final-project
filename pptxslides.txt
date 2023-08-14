@@ -1,65 +1,118 @@
-Total duration: 2:21
+Total duration: 10:55
 
 Slide 1:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:25
+Voiceover: Hello, and welcome to our presentation. Today we are going to discuss using Machine Learning and computer vision to detect breast cancer on a mammogram. This project is a part of the summer 2023 cohort of A.A.I. 501, Introduction to Artificial Intelligence, at the University of San Diego. Group 3 is comprised of Ahmed Ahmed, Mike Moll, and Lisa Vo.
 
 Slide 2:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:16
+Voiceover: We will discuss the project background, the goal of the project, the dataset we used, the training methods we used, including Support Vector Machines and Convolutional Neural Networks, compare the two algorithms, and discuss future research as well as possible implications. 
 
 Slide 3:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:07
+Voiceover: Let's start with a little background on breast cancer and the impact it has on millions of women and their families.
 
 Slide 4:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 1:10
+Voiceover: According to the American Cancer Society, breast cancer is expected to be diagnosed in nearly 300,000 individuals in 2023, making it a significant health concern. Tragically, this year alone, almost 44,000 women are projected to succumb to this disease.
+Breast cancer stands as the second most common cancer among women, falling only behind skin cancer. It predominantly affects middle-aged women, with the median age of diagnosis being 62. This signifies that half of the women diagnosed with breast cancer are 62 or younger.
+The lifetime risk for women is alarming; they face about a 13% chance of being diagnosed with this form of cancer, equating to 1 in 8 women. Encouragingly, however, breast cancer death rates have declined by 43 percent since 1989. Much of this reduction can be attributed to early detection, a result of widespread and regular mammogram screenings. These figures underscore the importance of continued vigilance and preventative measures in combating one of the most common and lethal diseases afflicting women today.
+
+
 
 Slide 5:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:42
+Voiceover: The purpose of this project is to develop and compare two distinct methods for predicting breast cancer in patients. The first approach will utilize Support Vector Machines (SVM), trained on structured tabular data containing patient medical histories, laboratory results, and other relevant information. The second approach will implement Convolutional Neural Networks (CNN), designed to analyze patient mammograms, which provide visual insights into potential cancerous growths. The ultimate goal is to compare the predictive accuracy of these two algorithms, identifying their respective strengths and weaknesses, and determining which method offers the most reliable and efficient prediction.
+
+
 
 Slide 6:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 1:35
+Voiceover: We would  like to introduce you to the core of our research, the dataset we've used for our analysis. It originates from CBIS-DDSM, an acronym that stands for the Curated Breast Imaging Subset of DDSM.
+So what exactly is CBIS-DDSM? It's an updated and standardized version of the well-known Digital Database for Screening Mammography, or DDSM, a comprehensive collection of mammographic images used across the world for breast cancer research.
+The uniqueness of CBIS-DDSM lies in its curation and standardization, ensuring that the data is consistent, accurate, and tailored to specific research needs.
+Now, here's where our methodology comes into play. We've divided this dataset into two main parts: a training set and a testing set. This division was guided by the BIRADS category, a standardized system to evaluate the images. Specifically, we allocated 20% of the cases for testing and the remaining 80% for training. It's important to note that this split was carried out separately for all mass cases and all calcification cases, allowing for a more refined and targeted analysis.
+By employing CBIS-DDSM and adopting this strategic split in our data, we align ourselves with cutting-edge practices in the field of breast cancer detection. It ensures that our research is built on a solid foundation, one that allows us to work towards better understanding and potentially more effective interventions in breast cancer treatment.
+
+
 
 Slide 7:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:59
+Voiceover: Firstly, we've embarked on an exploration that brings together a combination of different, yet interconnected fields. We're working at the intersection of machine learning, deep learning, and computer vision concepts. These aren't separate silos; they blend together, forming a robust framework that allows us to tackle complex problems with innovative solutions.
+But what makes our experiment truly fascinating is our approach to classification. We're not settling for a one-size-fits-all method. Instead, we're diving into a comparison of two distinctly different approaches, utilizing two different types of datasets.
+On one hand, we have image data, rich in visual details and complexity. On the other, we have structured tabular data, offering a different kind of insight. By juxtaposing these, we are not just learning how to use these methods; we're actively exploring which methods may be most effective under different circumstances.
+
 
 Slide 8:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:05
+Voiceover: Now, lets discuss the support vector machine algorithm
 
 Slide 9:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:51
+Voiceover: After combining the training and test data, unneeded columns were removed. This is because these features were more closely aligned to metadata than as determinants in breast cancer diagnosis. The values for abnormality type, in particular, were all “mass”, which is a given for the data that was being used, so this column was excluded.
+Rows with not-a-number (NaN) values were replaced with the mode of the feature that was associated with that NaN cell. After validating that there were no more NaN values in the data, one-hot encoding was applied to the categorical variables, which are left or right breast, image view, abnormality id, mass shape, mass margins. This encoding converts each categorical variable into a format that the model can train upon to improve prediction accuracy. 
 
 Slide 10:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:21
+Voiceover: In the tabular data, the explanatory variables are breast density, left or right breast, image view, abnormality id, mass shape, mass margins, assessment, and subtlety. The target variable is pathology with the following classification labels: BENIGN, MALIGNANT, BENIGN WITHOUT CALLBACK.
 
 Slide 11:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:42
+Voiceover: The combined tabular data was split into x train, x test, y train, y test using scikit-learn’s train_test_split function with the test size being 20% of the total combined data. A Support Vector Classification (SVC) object was created using scikit-learn’s s.v.m. module, where it was used to fit the x train data and y train data. The classifier predicted the data points in the x test data. An accuracy score was calculated from the predictions and y test data. The predictions and accuracy score calculations were repeated one thousand times to create a score distribution.
 
 Slide 12:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:04
+Voiceover: Here is the distribution of 1000 accuracy scores.
 
 Slide 13:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:23
+Voiceover: From a list of one thousand accuracy scores, the calculated mean score was approximately 0.78 with a standard deviation of 0.02, as shown in the histogram. The median was 0.78. The minimum accuracy score that was reached was approximately 0.71, while the maximum accuracy score was 0.84.
 
 Slide 14:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:04
+Voiceover: Now, let's discuss Convolutional Neural Networks.
 
 Slide 15:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:20
+Voiceover: DICOM medical images of ROI masked images were converted from DICOM format to to JPG format for both training, Validation, and test datasets. The images are sourced from directories defined by the metadata and are written to train or test folders based on pathology attributes.
+
 
 Slide 16:
-Duration: 0:08
-Voiceover: This is a test for the presentation video, just to see if it works. This is a test for the presentation video, just to see if it works. 
+Duration: 0:22
+Voiceover: CNN was applied to recognize patterns and structures within the mammogram images and was built using TensorFlow's Keras API.Several layers, including convolutional layers, pooling layers, and fully connected layers, were used in the architecture, which was fine-tuned through various iterations. The layers of the model are as outlined in the slide 
+
+
+Slide 17:
+Duration: 0:10
+Voiceover: The model is then compiled with the Adam optimizer, a categorical cross-entropy loss function, and is set to evaluate its performance based on accuracy.
+
+Slide 18:
+Duration: 0:55
+Voiceover: A depicted in the graph, In the training set, the model started with a 29.41% accuracy and improved to 76.47% by the 10th epoch. Loss decreased from 1.4259 in the 1st epoch to 0.5666 in the 10th epoch. In the validation set: accuracy began at 20.00% and peaked at 90.00% by the end of the 10th epoch. Loss reduced from 1.3224 in the 1st epoch to 0.5596 by the 10th epoch.
+ 
+The model is showing promising performance, with the validation accuracy reaching 90.00%. There are fluctuations in validation metrics across epochs, potentially due to a small validation set. Several images couldn't be loaded, suggesting data-related issues that need addressing.
+
+
+Slide 19:
+Duration: 0:17
+Voiceover: The model could not perform the prediction process. This could be related to incorrect loading or labeling of the images from the directory. There's a possibility that the model consistently predicts the same class for all images due to poor training or issues with the training data.
+
+Slide 20:
+Duration: 0:04
+Voiceover: Discussion and Results are still in progress and will be updated.
+
+Slide 21:
+Duration: 0:04
+Voiceover: Now, we will discuss future research and implications.
+
+Slide 22:
+Duration: 0:30
+Voiceover: It is important to note that this project is for an Introduction to Artificial Intelligence class. We acknowledge that the results of this project are nowhere near the quality needed for real world medical applications, this was an important first step in our journey to understanding Artificial Intelligence and how to use it.  We gained a deeper understanding of computer vision and machine learning concepts, applied the concepts we learned at a deeper level than the course content covered, and we were able to expand our technical skills. 
+
+Slide 23:
+Duration: 0:04
+Voiceover: This is where we will add potential improvements in the project
+
+Slide 24:
+Duration: 0:09
+Voiceover: Thank you for watching our presentation! We would like to thank Dr Andrew Van Benschoten for his guidance throughout this course and this project. 
