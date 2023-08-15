@@ -1,12 +1,12 @@
-Total duration: 10:55
+Total duration: 21:16
 
 Slide 1:
-Duration: 0:25
-Voiceover: Hello, and welcome to our presentation. Today we are going to discuss using Machine Learning and computer vision to detect breast cancer on a mammogram. This project is a part of the summer 2023 cohort of A.A.I. 501, Introduction to Artificial Intelligence, at the University of San Diego. Group 3 is comprised of Ahmed Ahmed, Mike Moll, and Lisa Vo.
+Duration: 0:27
+Voiceover: Hello, and welcome to our presentation. Today we are going to discuss using Machine Learning and Computer Vision to predict the presence of breast cancer using both tabular data and mammograms. This project is a part of the summer 2023 cohort of A.A.I. 501, Introduction to Artificial Intelligence, at the University of San Diego. Group 3 is comprised of Ahmed Ahmed, Mike Moll, and Lisa Vo.
 
 Slide 2:
-Duration: 0:16
-Voiceover: We will discuss the project background, the goal of the project, the dataset we used, the training methods we used, including Support Vector Machines and Convolutional Neural Networks, compare the two algorithms, and discuss future research as well as possible implications. 
+Duration: 0:20
+Voiceover: This is what will be discussed throughout the presentation. We will discuss the project background, the goal of the project, the dataset we used, the training methods we used, including Support Vector Machines and Convolutional Neural Networks, compare the two algorithms, and discuss future research as well as possible implications. 
 
 Slide 3:
 Duration: 0:07
@@ -22,16 +22,16 @@ The lifetime risk for women is alarming; they face about a 13% chance of being d
 
 Slide 5:
 Duration: 0:42
-Voiceover: The purpose of this project is to develop and compare two distinct methods for predicting breast cancer in patients. The first approach will utilize Support Vector Machines (SVM), trained on structured tabular data containing patient medical histories, laboratory results, and other relevant information. The second approach will implement Convolutional Neural Networks (CNN), designed to analyze patient mammograms, which provide visual insights into potential cancerous growths. The ultimate goal is to compare the predictive accuracy of these two algorithms, identifying their respective strengths and weaknesses, and determining which method offers the most reliable and efficient prediction.
+Voiceover: The purpose of this project is to develop and compare two distinct methods for predicting breast cancer in patients. The first approach will utilize Support Vector Machines (SVM’s), trained on structured tabular data containing patient medical histories, laboratory results, and other relevant information. The second approach will implement Convolutional Neural Networks (CNN’s), designed to analyze patient mammograms, which provide visual insights into potential cancerous growths. The ultimate goal is to compare the predictive accuracy of these two algorithms, identifying their respective strengths and weaknesses, and determining which method offers the most reliable and efficient prediction.
 
 
 
 Slide 6:
-Duration: 1:35
+Duration: 1:43
 Voiceover: We would  like to introduce you to the core of our research, the dataset we've used for our analysis. It originates from CBIS-DDSM, an acronym that stands for the Curated Breast Imaging Subset of DDSM.
 So what exactly is CBIS-DDSM? It's an updated and standardized version of the well-known Digital Database for Screening Mammography, or DDSM, a comprehensive collection of mammographic images used across the world for breast cancer research.
 The uniqueness of CBIS-DDSM lies in its curation and standardization, ensuring that the data is consistent, accurate, and tailored to specific research needs.
-Now, here's where our methodology comes into play. We've divided this dataset into two main parts: a training set and a testing set. This division was guided by the BIRADS category, a standardized system to evaluate the images. Specifically, we allocated 20% of the cases for testing and the remaining 80% for training. It's important to note that this split was carried out separately for all mass cases and all calcification cases, allowing for a more refined and targeted analysis.
+Now, here's where our methodology comes into play. We've divided this dataset into two main parts: a training set and a testing set. This division was guided by the BIRADS category, a standardized system to evaluate the images. Specifically, we allocated 20% of the cases for testing and the remaining 80% for training. It's important to note that this split was carried out separately for all mass cases and all calcification cases, allowing for a more refined and targeted analysis. In our case, we are using only the data pertaining to the abnormality type “mass” to identify lesions.
 By employing CBIS-DDSM and adopting this strategic split in our data, we align ourselves with cutting-edge practices in the field of breast cancer detection. It ensures that our research is built on a solid foundation, one that allows us to work towards better understanding and potentially more effective interventions in breast cancer treatment.
 
 
@@ -48,71 +48,145 @@ Duration: 0:05
 Voiceover: Now, lets discuss the support vector machine algorithm
 
 Slide 9:
-Duration: 0:51
-Voiceover: After combining the training and test data, unneeded columns were removed. This is because these features were more closely aligned to metadata than as determinants in breast cancer diagnosis. The values for abnormality type, in particular, were all “mass”, which is a given for the data that was being used, so this column was excluded.
-Rows with not-a-number (NaN) values were replaced with the mode of the feature that was associated with that NaN cell. After validating that there were no more NaN values in the data, one-hot encoding was applied to the categorical variables, which are left or right breast, image view, abnormality id, mass shape, mass margins. This encoding converts each categorical variable into a format that the model can train upon to improve prediction accuracy. 
+Duration: 0:22
+Voiceover: Support vector machines are supervised learning models in machine learning. In S.V.M., data is mapped to multiple dimensions in the feature space where a separator, or hyperplane, is optimized and separates the categories as best as it can. 
+
+Support vector machines are commonly used in classification and regression on both linear and non-linear data.
 
 Slide 10:
-Duration: 0:21
-Voiceover: In the tabular data, the explanatory variables are breast density, left or right breast, image view, abnormality id, mass shape, mass margins, assessment, and subtlety. The target variable is pathology with the following classification labels: BENIGN, MALIGNANT, BENIGN WITHOUT CALLBACK.
+Duration: 1:04
+Voiceover: After combining the training and test data, unneeded columns were removed. This is because these features were more closely aligned to metadata than as determinants in breast cancer diagnosis. The values for abnormality type, in particular, were all “mass”, which is a given for the data that was being used, so this column was excluded. As a result, the columns that were excluded from training were patient id, abnormality type, image file path, cropped image file path, and R.O.I. mask file path.
+Rows with not-a-number (N.A.N.) values were replaced with the mode of the feature that was associated with that N.A.N. cell. After validating that there were no more N.A.N. values in the data, one-hot encoding was applied to the categorical variables, which are left or right breast, image view, abnormality I.D., mass shape, mass margins. This encoding converts each categorical variable into a format that the model can train upon to improve prediction accuracy. 
 
 Slide 11:
-Duration: 0:42
-Voiceover: The combined tabular data was split into x train, x test, y train, y test using scikit-learn’s train_test_split function with the test size being 20% of the total combined data. A Support Vector Classification (SVC) object was created using scikit-learn’s s.v.m. module, where it was used to fit the x train data and y train data. The classifier predicted the data points in the x test data. An accuracy score was calculated from the predictions and y test data. The predictions and accuracy score calculations were repeated one thousand times to create a score distribution.
+Duration: 0:21
+Voiceover: In the tabular data, the target variable is pathology with the following classification labels: BENIGN, MALIGNANT, BENIGN WITHOUT CALLBACK. The explanatory variables are breast density, left or right breast, image view, abnormality I.D., mass shape, mass margins, assessment, and subtlety. 
 
 Slide 12:
-Duration: 0:04
-Voiceover: Here is the distribution of 1000 accuracy scores.
+Duration: 0:42
+Voiceover: The combined tabular data was split into x train, x test, y train,  and y test using scikit-learn’s train_test_split function with the test size being 20% of the total combined data. A Support Vector Classification (S.V.C.) object was created using scikit-learn’s s.v.m. module, where it was used to fit the x train data and y train data. The classifier predicted the data points in the x test data. An accuracy score was calculated from the predictions and y test data. The predictions and accuracy score calculations were repeated one thousand times to create a score distribution.
 
 Slide 13:
-Duration: 0:23
-Voiceover: From a list of one thousand accuracy scores, the calculated mean score was approximately 0.78 with a standard deviation of 0.02, as shown in the histogram. The median was 0.78. The minimum accuracy score that was reached was approximately 0.71, while the maximum accuracy score was 0.84.
+Duration: 0:09
+Voiceover: Here is the distribution of 1000 accuracy scores. The center of the histogram looks to be about 0.78.
 
 Slide 14:
+Duration: 0:38
+Voiceover: From a list of one thousand accuracy scores, the calculated mean score was approximately 0.78 with a standard deviation of 0.02, as shown in the histogram. The median was 0.78. The minimum accuracy score that was reached was approximately 0.71, while the maximum accuracy score was 0.84. What could improve the accuracy score is a larger dataset with less missing values. Filling the missing values with the mode is a useful starting point in improving the data, but this adds an inaccurate level of variability to the dataset. 
+
+Slide 15:
 Duration: 0:04
 Voiceover: Now, let's discuss Convolutional Neural Networks.
 
-Slide 15:
-Duration: 0:20
-Voiceover: DICOM medical images of ROI masked images were converted from DICOM format to to JPG format for both training, Validation, and test datasets. The images are sourced from directories defined by the metadata and are written to train or test folders based on pathology attributes.
-
-
 Slide 16:
-Duration: 0:22
-Voiceover: CNN was applied to recognize patterns and structures within the mammogram images and was built using TensorFlow's Keras API.Several layers, including convolutional layers, pooling layers, and fully connected layers, were used in the architecture, which was fine-tuned through various iterations. The layers of the model are as outlined in the slide 
-
+Duration: 0:25
+Voiceover: Convolutional neural networks are a form of deep learning that is modeled after the human brain, specifically the neuron. It consists of an input layer, output layer, and at least one intermediate layer that performs the convolution, which is when the weights of the nodes are applied to each pixel of the image. Weights are replicated across the nodes of each layer. The goal is for each weight to reach an optimal value.
 
 Slide 17:
-Duration: 0:10
-Voiceover: The model is then compiled with the Adam optimizer, a categorical cross-entropy loss function, and is set to evaluate its performance based on accuracy.
+Duration: 0:42
+Voiceover: D.I.C.O.M stands for Digital Imaging and Communications In Medicine. It is the standard protocol in displaying and transmitting medical images. The mammograms with R.O.I. masked images were converted from D.I.C.O.M. format to to J.P.G. format for both training, validation, and test datasets. The images are sourced from directories defined by the metadata and are written to the training, validation, and test directories with subdirectories assigned to each classification label: benign, malignant, and benign without callback. Benign without callback means that the mammogram was marked as worth tracking, but there is no follow-up with the patient.
+
 
 Slide 18:
-Duration: 0:55
-Voiceover: A depicted in the graph, In the training set, the model started with a 29.41% accuracy and improved to 76.47% by the 10th epoch. Loss decreased from 1.4259 in the 1st epoch to 0.5666 in the 10th epoch. In the validation set: accuracy began at 20.00% and peaked at 90.00% by the end of the 10th epoch. Loss reduced from 1.3224 in the 1st epoch to 0.5596 by the 10th epoch.
- 
-The model is showing promising performance, with the validation accuracy reaching 90.00%. There are fluctuations in validation metrics across epochs, potentially due to a small validation set. Several images couldn't be loaded, suggesting data-related issues that need addressing.
+Duration: 0:49
+Voiceover: The convolutional neural network was applied to recognize patterns and structures within the mammogram images and was built using TensorFlow's Keras API. Several layers, including convolutional layers, pooling layers, and fully connected layers, were used in the architecture, which was fine-tuned through various iterations. 
+The input layer consists of images of 128 by 128 pixels with 3 color channels (R.G.B.).
+The convolutional layer consists of 32 filters of size 3 by 3 with a Rectified Linear Unit activation.
+The max pooling layer is of 2 by 2 pooling size.
+Another convolutional layer is added, and consists of 64 filters of size 3 by 3 with Rectified Linear Unit activation.
 
 
 Slide 19:
-Duration: 0:17
-Voiceover: The model could not perform the prediction process. This could be related to incorrect loading or labeling of the images from the directory. There's a possibility that the model consistently predicts the same class for all images due to poor training or issues with the training data.
+Duration: 2:02
+Voiceover: Another max pooling layer of 2 by 2 pooling size is added.
+The subsequent flattening layer, dense layer, and dropout layer are finishing touches to process the output of the convolutional layers to optimize prediction accuracy.
+Lastly, the output layer consists of 3 neurons to represent the three pathologies.
+The model is compiled using the Adam optimizer, a specific algorithm designed to update the network weights iteratively based on the training data. The Adam optimizer is favored in many machine learning applications due to its efficiency and low memory requirements. It combines the benefits of two other popular optimization methods, AdaGrad and RMSProp, providing an excellent balance between speed and accuracy in finding optimal solutions.
+Alongside the Adam optimizer, the model employs a categorical cross-entropy loss function. This loss function is particularly suitable for classification problems where classes are mutually exclusive. In the context of a multi-class classification task, the categorical cross-entropy loss function measures the difference between the predicted probability distribution and the actual distribution of the target classes. The goal during training is to minimize this difference, leading the model to make predictions that closely align with the true labels.
+The model's performance is set to be evaluated based on accuracy, which is a common metric for classification problems. Accuracy refers to the proportion of correctly classified instances out of the total number of instances. It provides a straightforward and intuitive measure of the model's ability to make correct predictions. While accuracy is a valuable metric, it's worth noting that it may not always provide a complete picture, especially in cases where the class distribution is imbalanced. In such scenarios, additional metrics such as precision, recall, or the F1 score might be considered to gain a more nuanced understanding of the model's performance.
+
 
 Slide 20:
-Duration: 0:04
-Voiceover: Discussion and Results are still in progress and will be updated.
+Duration: 0:59
+Voiceover: The model encountered difficulties in executing the prediction process, and the root of this problem may lie in several areas. One possibility is that the images were not loaded or labeled correctly from the directory, leading to inconsistencies in the data input. Additionally, there's a concerning indication that the model may be predicting the same class for all images. This uniformity in prediction could stem from inadequate training or underlying issues with the training data itself.
+ These challenges underscore the importance of rigorous validation and quality control at various stages of model development. Ensuring proper loading and labeling of images, along with careful evaluation of the training process, is essential to prevent such anomalies and achieve a model that can provide accurate and diverse predictions. Without addressing these foundational aspects, the model's performance may remain compromised, limiting its potential application and reliability.
+
 
 Slide 21:
+Duration: 0:55
+Voiceover: As depicted in the graph, In the training set, the model started with a 29.41% accuracy and improved to 76.47% by the 10th epoch. Loss decreased from 1.4259 in the 1st epoch to 0.5666 in the 10th epoch. In the validation set: accuracy began at 20.00% and peaked at 90.00% by the end of the 10th epoch. Loss reduced from 1.3224 in the 1st epoch to 0.5596 by the 10th epoch.
+ 
+The model is showing promising performance, with the validation accuracy reaching 90.00%. There are fluctuations in validation metrics across epochs, potentially due to a small validation set. Several images couldn't be loaded, suggesting data-related issues that need addressing.
+
+Slide 22:
+Duration: 0:05
+Voiceover: Let’s compare support vector machines and convolutional neural networks.
+
+Slide 23:
+Duration: 0:37
+Voiceover: Both support vector machines and convolutional neural networks were effective in training upon existing tabular data and images to predict the presence of breast cancer.
+
+Our C.N.N. was able to reach accuracy levels (post-validation) that our S.V.M. classifier could not. The global max accuracy the C.N.N. reached was 0.90. The global max accuracy the S.V.M. reached was 0.84.
+
+Although the C.N.N. performed better than the S.V.M. with our particular dataset, using both can give a more conclusive result in detecting breast cancer.
+
+Slide 24:
 Duration: 0:04
 Voiceover: Now, we will discuss future research and implications.
 
-Slide 22:
-Duration: 0:30
-Voiceover: It is important to note that this project is for an Introduction to Artificial Intelligence class. We acknowledge that the results of this project are nowhere near the quality needed for real world medical applications, this was an important first step in our journey to understanding Artificial Intelligence and how to use it.  We gained a deeper understanding of computer vision and machine learning concepts, applied the concepts we learned at a deeper level than the course content covered, and we were able to expand our technical skills. 
+Slide 25:
+Duration: 1:16
+Voiceover: This project, undertaken as part of an Introduction to Artificial Intelligence class, represents a significant milestone in our educational journey. We readily acknowledge that the results we achieved are not yet refined enough to meet the stringent demands of real-world medical applications. However, this project should not be underestimated, as it served as a crucial stepping stone in our exploration of Artificial Intelligence and its practical utilization.
+ 
+Our engagement with this project facilitated a deeper understanding of computer vision and machine learning. Not only did we dive into these complex concepts beyond the foundational level covered in our coursework, but we also took the opportunity to apply our theoretical knowledge in a tangible context. Through hands-on experience, we were able to expand our technical skills, enhancing our understanding of how AI can be harnessed in various fields, including the ever-critical domain of healthcare.
+ 
+This project is symbolic of the learning process itself, a blend of theory and practice that pushed boundaries and challenged us to grow. It has instilled in us a deeper appreciation for the capabilities and potential of AI, providing a solid foundation upon which we can build in our future studies and professional pursuits.
 
-Slide 23:
-Duration: 0:04
-Voiceover: This is where we will add potential improvements in the project
 
-Slide 24:
+Slide 26:
+Duration: 0:46
+Voiceover: This experiment is beneficial, but not without acknowledging its shortcoming. There can be many improvements if this experiment is carried out again. A larger dataset with less missing values can increase the accuracy of the predictions of the S.V.M. classifier. Alternative methods can be explored to mitigate the impact of missing values, such as applying parametric or non-parametric bootstrapping to the data.
+
+An improved way to convert the images to J.P.G can be explored to reduce the loss of data during conversion. Next, the organization and transport of the images to its correct classification directory was difficult using Python; therefore, exploring a less time-consuming method would prove useful to future researchers.
+
+Slide 27:
+Duration: 3:20
+Voiceover: The integration of computer vision and machine learning in the detection of breast cancer through mammograms has had a significant impact on healthcare. We  will outline some of the key implications and areas of impact:
+Improved Accuracy:
+- Early Detection: Machine learning algorithms can analyze mammograms with great detail, identifying subtle patterns and abnormalities that might be missed by human eyes. This can lead to earlier detection of cancerous tissues.
+- Reduced False Positives/Negatives: Advanced models help in reducing false positives and negatives, leading to more accurate diagnoses.
+ 
+ Efficiency and Scalability:
+- Faster Analysis: Automated analysis of mammograms speeds up the diagnostic process, allowing more patients to be screened in less time.
+- Consistency: Algorithms provide consistent analysis without fatigue, unlike human radiologists who may vary in their interpretations.
+ 
+ Personalized Treatment:
+- Tailored Approach: Machine learning can integrate various data sources, including patient history, to provide a more personalized risk assessment and treatment plan.
+ 
+ Accessibility:
+- Remote Areas: Automated analysis can make mammogram screening more accessible in remote or underserved areas where specialist radiologists may not be readily available.
+- Cost Reduction: Automation can potentially reduce healthcare costs, making screening more accessible to a broader population.
+ 
+Ethical and Regulatory Considerations:
+- Data Privacy: The use of patient data in training machine learning models raises concerns about privacy and consent.
+- Regulatory Compliance: Ensuring that algorithms meet regulatory standards and clinical guidelines is essential for their integration into medical practice.
+ 
+ Integration with Healthcare Systems:
+- Interoperability: Integrating machine learning models with existing healthcare systems and workflows can be challenging but is vital for practical implementation.
+- Continuous Learning: Models need continuous updating and validation with new data to remain effective and relevant.
+ 
+ Educational and Psychological Aspects:
+- Patient Understanding: Clear communication with patients about how machine learning is used in their care is essential for trust and understanding.
+- Professional Development: Radiologists and healthcare professionals must be trained to work alongside AI systems, understanding their limitations and strengths.
+ 
+Research and Innovation:
+- New Insights: Analysis of large datasets can uncover new insights into breast cancer, contributing to research and development of new treatments.
+- Collaboration: The field encourages collaboration between medical professionals, data scientists, and engineers, fostering innovation.
+ 
+ Conclusion:
+The application of computer vision and machine learning in breast cancer detection through mammograms represents a significant advancement in medical diagnostics. While offering the promise of improved accuracy, efficiency, and accessibility, it also brings challenges in integration, regulation, ethics, and education. Continuous research, collaboration, development, and careful consideration of these factors are essential to fully realize the benefits of this technology in breast cancer care.
+
+
+Slide 28:
 Duration: 0:09
 Voiceover: Thank you for watching our presentation! We would like to thank Dr Andrew Van Benschoten for his guidance throughout this course and this project. 
